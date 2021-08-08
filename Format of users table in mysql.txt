@@ -1,0 +1,33 @@
+Format of users table in MySQL. 
+mysql> desc users;
++-----------+--------------+------+-----+---------+----------------+
+| Field     | Type         | Null | Key | Default | Extra          |
++-----------+--------------+------+-----+---------+----------------+
+| User_ID   | int          | NO   | PRI | NULL    | auto_increment |
+| User_Name | varchar(255) | NO   |     | NULL    |                |
+| Password  | varchar(255) | NO   |     | NULL    |                |
+| Coins     | int          | YES  |     | NULL    |                |
++-----------+--------------+------+-----+---------+----------------+
+4 rows in set (0.03 sec)
+
+Format of pokemones in MySQL.
+mysql> desc pokemones;
++-----------------+-------------+------+-----+---------+-------+
+| Field           | Type        | Null | Key | Default | Extra |
++-----------------+-------------+------+-----+---------+-------+
+| Name            | varchar(25) | YES  |     | NULL    |       |
+| Type_1          | varchar(20) | YES  |     | NULL    |       |
+| Type_2          | varchar(20) | YES  |     | NULL    |       |
+| Total           | int         | YES  |     | NULL    |       |
+| Health_Points   | int         | YES  |     | NULL    |       |
+| Attack          | int         | YES  |     | NULL    |       |
+| Defense         | int         | YES  |     | NULL    |       |
+| Special_Attack  | int         | YES  |     | NULL    |       |
+| Special_defense | int         | YES  |     | NULL    |       |
+| Speed           | int         | YES  |     | NULL    |       |
+| Generation      | int         | YES  |     | NULL    |       |
+| Legendery       | char(5)     | YES  |     | NULL    |       |
++-----------------+-------------+------+-----+---------+-------+
+12 rows in set (0.01 sec)
+
+Enjoy programing :)
