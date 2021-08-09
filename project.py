@@ -35,8 +35,6 @@ def Signup():
         dbe.write(f"{n_user},{n_passwd}\n")
         create_table=(f"create table {n_user}(Name varchar(25),Type_1 varchar(20),Type_2 varchar(20),Total int,Health_Points int,Attack int,Defense int,Special_Attack int,Special_defense int,Speed int,Generation int,Legendery char(5));")
         mycon.execute(create_table)
-        insert_user=(f"insert into Users value(,'{n_user}','{n_passwd}',50)")
-        mycon.execute(insert_user)
         #insert_user=(f"insert into Users value(,'{n_user}','{n_passwd}',50)")
         #mycon.execute(insert_user)
         sql.commit()
