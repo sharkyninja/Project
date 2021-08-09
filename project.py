@@ -45,6 +45,7 @@ def Login():
     user=input()
     print("Enter Password")
     passwd=input()
+    print("'Welcome!")
 
     return(user)
 def Main():
