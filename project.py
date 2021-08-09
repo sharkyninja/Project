@@ -37,6 +37,7 @@ def Signup():
         mycon.execute(create_table)
         insert_user=(f"insert into Users value(,'{n_user}','{n_passwd}',50)")
         mycon.execute(insert_user)
+        #insert_user=(f"insert into Users value(,'{n_user}','{n_passwd}',50)")
         sql.commit()
         print("Successfuly created an account.")
 def Login():
