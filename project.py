@@ -28,17 +28,19 @@ def Signup():
     c_passwd=input()
     if len(n_passwd)<8:
         print("Password must contain atleast 8 characters.")
-    if n_passwd!=c_passwd:
+    elif n_passwd!=c_passwd:
         print("Passwords don't match.")
     else:
-        dbe=open("Users.txt","a")
-        dbe.write(f"{n_user},{n_passwd}\n")
-        create_table=(f"create table {n_user}(Name varchar(25),Type_1 varchar(20),Type_2 varchar(20),Total int,Health_Points int,Attack int,Defense int,Special_Attack int,Special_defense int,Speed int,Generation int,Legendery char(5));")
-        mycon.execute(create_table)
-        #insert_user=(f"insert into Users value(,'{n_user}','{n_passwd}',50)")
-        #mycon.execute(insert_user)
-        sql.commit()
-        print("Successfuly created an account.")
+        try:
+            create_table=(f"create table {n_user}(Name varchar(25),Type_1 varchar(20),Type_2 varchar(20),Total int,Health_Points int,Attack int,Defense int,Special_Attack int,Special_defense int,Speed int,Generation int,Legendery char(5));")
+            mycon.execute(create_table)
+            insert_user=(f"insert into Users(User_name,Password,Coins) value(default,{n_user},{n_passwd},50)")
+            mycon.execute(insert_user)
+            sql.commit()
+            print("Successfuly created an account.")
+        except:
+            print("user_name already exists!\nTry again.")
+            Signup()
 def Login():
     print("*******Login*******")
     print("Enter Username")
