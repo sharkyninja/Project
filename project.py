@@ -1,10 +1,10 @@
 print("Importing Libraries..")
-import os 
 import random
 import pandas as pd
 import matplotlib.pyplot as pl
 import mysql.connector as myconn
-db=open("Users.txt","r")
+info = pd.read_csv('Pokemons.csv')
+df = pd.DataFrame(info)
 print("MySQL:Connecting to Database")
 sql=myconn.connect(host="localhost",user="root",passwd="12345678",database="project")
 mycon=sql.cursor()
@@ -16,8 +16,10 @@ else:
 def Startup():
     print("Welcome")
     print("1.Login\n2.Signup")
-    o=int(input())
-    return(0)
+    r=int(input())
+    if r==2:
+        Signup()
+    
 def Signup():
     print("******Signup******")
     print("Create a User_name")
@@ -47,10 +49,15 @@ def Login():
     print("Enter Password")
     passwd=input()
     print("'Welcome!")
-
-    return(user)
+    mypass=mycon.execute(f"select password from users where User_name='{user}';")
+    if passwd != mypass:
+        print("Incorrect User_name or Password")
+        Login()
+    else:
+        print(f"Signed in as {user}")
+        return(user)
 def Main():
-    print("welcome,{user}")
+    print(f"welcome,{user}")
     print("Choose an option from below to Continue:")
     print("1.Take a Draw for pokemones.")
     print("2.View all your pokemones.")#m_stephin
@@ -60,6 +67,34 @@ def random_poki():
     print("Your Coins:{coins}")
     print("Cost per draw: 1 coin")
     print("Enter the number of draw u would like to take.")
-    x=int(input())
-    return(x)
-Signup()
+    a = int(input())
+    y = 1
+    for i in range(0, a):
+        x = random.randint(1, 799)
+        name=df.iloc[x,1]
+        type_1=df.iloc[x,2]
+        type_2=df.iloc[x,3]
+        total=df.iloc[x,4]
+        hp=df.iloc[x,5]
+        attack=df.iloc[x,6]
+        defense=df.iloc[x,7]
+        sp_atk=df.iloc[x,8]
+        sp_def=df.iloc[x,9]
+        speed=df.iloc[x,10]
+        generation=df.iloc[x,11]
+        print("Draw No ", y,f": {name}")
+        ids=['Total', 'Health', 'Attack', 'Defense', 'special_attack', 'Special_Defense', 'Speed']
+        values=[total,hp,attack,defense,sp_atk,sp_def,speed]
+        insert=(f"insert into {user} value('{name}','{type_1}','{type_2}',{total},{hp},{attack},{defense},{sp_atk},{sp_def},{speed},{generation},'{legendary}')")
+        mycon.execute(sql)
+        sql.commit()
+        y = y+1
+        pl.barh(ids,values,)
+        if df.iloc[x,12]==True:
+            pl.title(f"{df.iloc[x, 1]},Legendary\nGeneration:{df.iloc[x, 11]}")
+            pl.show()
+        else:
+            pl.title(f"{df.iloc[x, 1]}\nGeneration:{df.iloc[x, 11]}")
+            pl.show()
+Startup()
+user=Login()
