@@ -100,5 +100,6 @@ def random_poki():
 def coins():
     mycon.execute(f"select coins from users where name = '{user_name}';")
     coins= mycon.fetchall()
+    return (coins)
 Startup()
 user_name=Login()
