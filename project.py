@@ -97,5 +97,8 @@ def random_poki():
         else:
             pl.title(f"{df.iloc[x, 1]}\nGeneration:{df.iloc[x, 11]}")
             pl.show()
+def coins():
+    mycon.execute(f"select coins from users where name = '{user_name}';")
+    coins= mycon.fetchall()
 Startup()
 user_name=Login()
