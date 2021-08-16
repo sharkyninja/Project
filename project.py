@@ -48,16 +48,17 @@ def Login():
     user=input()
     print("Enter Password")
     passwd=input()
-    print("'Welcome!")
     mypass=mycon.execute(f"select password from users where User_name='{user}';")
-    if passwd != mypass:
-        print("Incorrect User_name or Password")
-        Login()
-    else:
-        print(f"Signed in as {user}")
-        return(user)
+    print(mypass)
+    print(user,mypass,passwd)
+#    if passwd != mypass:
+ #       print("Incorrect User_name or Password")
+  #      Login()
+   # else:
+    #    print(f"Signed in as {user}")
+     #   return(user)
 def Main():
-    print(f"welcome,{user}")
+    print(f"welcome,{user_name}")
     print("Choose an option from below to Continue:")
     print("1.Take a Draw for pokemones.")
     print("2.View all your pokemones.")#m_stephin
@@ -85,7 +86,7 @@ def random_poki():
         print("Draw No ", y,f": {name}")
         ids=['Total', 'Health', 'Attack', 'Defense', 'special_attack', 'Special_Defense', 'Speed']
         values=[total,hp,attack,defense,sp_atk,sp_def,speed]
-        insert=(f"insert into {user} value('{name}','{type_1}','{type_2}',{total},{hp},{attack},{defense},{sp_atk},{sp_def},{speed},{generation},'{legendary}')")
+        insert=(f"insert into {user_name} value('{name}','{type_1}','{type_2}',{total},{hp},{attack},{defense},{sp_atk},{sp_def},{speed},{generation},'{legendary}')")
         mycon.execute(sql)
         sql.commit()
         y = y+1
@@ -97,4 +98,4 @@ def random_poki():
             pl.title(f"{df.iloc[x, 1]}\nGeneration:{df.iloc[x, 11]}")
             pl.show()
 Startup()
-user=Login()
+user_name=Login()
